@@ -1,0 +1,141 @@
+highlights 
+2.1:-
+node -v or node --version
+node index.js
+node
+it is a js runtime
+
+2.2:-
+	const fs = require("fs");
+
+fs.writeFile("message.txt", "Hello Node", (err) => {
+  if (err) throw err;
+  console.log("The file has been saved!");
+});
+
+fs.readFile("message.txt", "utf8", (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+
+2.3:-
+
+npm init 
+npm i <something>
+then we get package.json
+ecma script and cjs(common js)
+modify the package.json file to "type": module
+
+2.4:
+inquirer package and qr-image package
+we did qr project
+
+
+3.1:-
+npm i express
+
+import express from "express"
+const app=express()
+app.listen(3000,()=>{
+	console.log("running on port 3000")
+});
+//this creates our local server
+
+3.2:-
+GET: is to request resource
+POST: sending resource
+PUT:replace resource
+PATCH:patch up a resource
+DELETE:delete resource
+
+	app.get("/", (req,res)=>{
+	console.log(req.rawHeaders);
+	res.send("hello world");
+	// res.send("<h1> hello world </h1>");
+	});
+
+//we learnt how to install nodemon
+npm i -g nodemon
+
+3.3:-
+we learnt about http response status codes
+remember:
+100s: hold on
+200s: here you go
+300s: go away//redirect
+400s: client srewed up
+500: the server screwed up
+
+we installed postman
+using nodemon index.js run the server and test out the different responses
+
+3.4:-
+middlewares
+
+	import express from "express";
+import { dirname } from "path"; //new
+import { fileURLToPath } from "url"; //new
+import bodyParser from "body-parser";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const app = express();
+const port = 3000;
+app.use(express.urlencoded({ extended: true })); //important
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+app.post("/submit", (req, res) => {
+  console.log(req.body); //using postman to check 
+}); //important
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+//custom middlewares
+app.use(morgan("tiny")); 
+
+//we created a custom middle ware as follows:
+app.use(function logger(req, res, next){
+  console.log("request method", req.method);
+  console.log("req url", req.url);
+  next();
+});
+
+//middleware order is really important
+
+
+4.0:-
+separation of concerns, templating languages are: handlebars, pug, jinja(python), twig(php), ejs
+we studied res.render("filename.ejs",{object});
+
+4.1:-
+ejs tags:
+<%= variable %>
+<% console.log("hello")%>
+<%- <h1>home</h1> %>
+<%# comment %>
+<%- include("anotherfile.ejs") %>
+
+4.3:-
+using post route to render the html file 
+we leanrt about locals.obj if obj is passed to the rendered html ejs file or not
+also for static files, app.use(express.static("public"))
+
+225:- structuring api requests:
+we leanrt about api endpoints, api query
+eg:
+bored-api.appbrewery.com/endpoint/query=value&query=value OR endpoint/{path-parameter}
+
+226:-
+jsonviewer.stack.hu
+data=JSON.parse(recipeJSON)
+
+227:-
+axios
+
+228:-
+
+249:-
+sql query to create a table and diff datatypes
+
+
